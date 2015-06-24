@@ -8,11 +8,7 @@ class UsersController < ApplicationController
     def show
         set_user
     end
-
-    def edit
-        set_user
-    end
-
+    
     private
 
     def set_users
