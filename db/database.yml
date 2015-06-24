@@ -1,0 +1,7 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: omise_example_dev
+  pool: 5
+  username: tomdallimore
+  password: 

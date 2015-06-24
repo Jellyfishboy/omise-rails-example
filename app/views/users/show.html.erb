@@ -1,0 +1,55 @@
+<h1><%= @user.name %></h1>
+<h2><%= @user.email %></h2>
+<p>My Omise customer Id: <%= @user.omise_id %></p>
+
+<h3>List of Omise cards:</h3>
+<% if @user.customer.cards.total == 0 %>
+    <p>You currently have no cards for this account.</p>
+<% else %>
+    <ul>
+        <% @user.customer.cards.each do |card| %>
+            <li>
+                Name
+                <%= card.name %>
+                <br>
+                Brand
+                <%= card.brand %>
+                <br>
+                Last digits
+                <%= card.last_digits %>
+                <br>
+                Country
+                <%= card.country %>
+                <br>
+                Expiration date
+                <%= card.expiration_month %>/<%= card.expiration_year %>
+                <br>
+                <%= link_to 'Delete card', delete_card_user_path(card_token: card.id), method: :delete %>
+            </li>
+        <% end %>
+    </ul>
+<% end %>
+
+<h3>List of orders:</h3>
+
+<h3>Add a new card:</h3>
+<%= form_tag create_card_user_path, method: :post do %>
+    Name
+    <%= text_field_tag :name %>
+    <br>
+    Card number
+    <%= text_field_tag :number %>
+    <br>
+    Expiration month
+    <%= text_field_tag :expiration_month %>
+    <br>
+    Expiration year
+    <%= text_field_tag :expiration_year %>
+    <br>
+    Security code
+    <%= text_field_tag :security_code %>
+    <br>
+    <%= submit_tag "Create" %>
+<% end %>
+<br>
+<%= link_to 'Index', users_path %>
