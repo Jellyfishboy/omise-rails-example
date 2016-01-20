@@ -5,10 +5,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :users, only: [:index, :show] do
-    member do
-      post 'create_card', to: 'omise#create_card'
-      delete 'delete_card', to: 'omise#delete_card'
-    end
+    resource :omise_card, only: [:create, :destroy]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

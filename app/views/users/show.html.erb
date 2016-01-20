@@ -9,22 +9,22 @@
     <ul>
         <% @user.customer.cards.each do |card| %>
             <li>
-                Name
+                <b>Name</b>
                 <%= card.name %>
                 <br>
-                Brand
+                <b>Brand</b>
                 <%= card.brand %>
                 <br>
-                Last digits
+                <b>Last digits</b>
                 <%= card.last_digits %>
                 <br>
-                Country
+                <b>Country</b>
                 <%= card.country %>
                 <br>
-                Expiration date
+                <b>Expiration date</b>
                 <%= card.expiration_month %>/<%= card.expiration_year %>
                 <br>
-                <%= link_to 'Delete card', delete_card_user_path(card_token: card.id), method: :delete %>
+                <%= link_to 'Delete card', user_omise_card_path(@user.id, card_token: card.id), method: :delete %>
             </li>
         <% end %>
     </ul>
@@ -33,7 +33,7 @@
 <h3>List of orders:</h3>
 
 <h3>Add a new card:</h3>
-<%= form_tag create_card_user_path, method: :post do %>
+<%= form_tag user_omise_card_path(@user.id), method: :post do %>
     Name
     <%= text_field_tag :name %>
     <br>
