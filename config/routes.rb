@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :users, only: [:index, :show] do
-    resources :omise_cards, except: [:index, :show, :edit, :update]
+    resources :omise_cards, except: [:index, :show, :edit, :update] do
+      post 'charge/:value', to: 'omise_cards#charge', as: 'charge', on: :member
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

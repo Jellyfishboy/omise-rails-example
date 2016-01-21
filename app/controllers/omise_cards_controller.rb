@@ -24,6 +24,11 @@ class OmiseCardsController < ApplicationController
         redirect_to user_path(@user.id)
     end
 
+    def charge
+        set_user
+        set_card
+    end
+
     private
 
     def set_user

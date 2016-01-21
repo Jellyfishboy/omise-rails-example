@@ -24,5 +24,11 @@
         <%= card.expiration_month %>/<%= card.expiration_year %>
     </div>
     <br>
+    <div>
+        <%= link_to 'Charge 10', charge_user_omise_card_path(@user.id, card.id, 10), method: :post %>
+        <%= link_to 'Charge 50', charge_user_omise_card_path(@user.id, card.id, 50), method: :post %>
+        <%= link_to 'Charge 100', charge_user_omise_card_path(@user.id, card.id, 100), method: :post %>
+    </div>
+    <br>
     <%= link_to 'Delete card', user_omise_card_path(@user.id, card.id), method: :delete %>
 </li>
