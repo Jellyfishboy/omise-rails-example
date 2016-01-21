@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :users, only: [:index, :show] do
-    resource :omise_card, only: [:create, :destroy]
+    resources :omise_cards, except: [:index, :show, :edit, :update]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,0 +1,37 @@
+<% if f.object.errors.any? %>
+    <div id="error_explanation">
+        <h2><%= pluralize(f.object.errors.count, 'error') %> prohibited this discount code from being saved:</h2>
+
+        <ul>
+            <% f.object.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
+<b>Name</b>
+<div>
+    <%= f.text_field :name %>
+</div>
+<br>
+<b>Card number</b>
+<div>
+    <%= f.text_field :number %>
+</div>
+<br>
+<b>Expiration month</b>
+<div>
+    <%= f.text_field :expiration_month %>
+</div>
+<br>
+<b>Expiration year</b>
+<div>
+    <%= f.text_field :expiration_year %>
+</div>
+<br>
+<b>Security code</b>
+<div>
+    <%= f.text_field :security_code %>
+</div>
+<br>
+<%= submit_tag "Create" %>

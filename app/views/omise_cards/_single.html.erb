@@ -1,0 +1,28 @@
+<li>
+    <b>Name</b>
+    <div>
+        <%= card.name %>
+    </div>
+    <br>
+    <b>Brand</b>
+    <div>
+        <%= card.brand %>
+    </div>
+    <br>
+    <b>Last digits</b>
+    <div>
+        <%= card.last_digits %>
+    </div>
+    <br>
+    <b>Country</b>
+    <div>
+        <%= card.country.upcase %>
+    </div>
+    <br>
+    <b>Expiration date</b>
+    <div>
+        <%= card.expiration_month %>/<%= card.expiration_year %>
+    </div>
+    <br>
+    <%= link_to 'Delete card', user_omise_card_path(@user.id, card.id), method: :delete %>
+</li>

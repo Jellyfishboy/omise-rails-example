@@ -8,48 +8,11 @@
 <% else %>
     <ul>
         <% @user.customer.cards.each do |card| %>
-            <li>
-                <b>Name</b>
-                <%= card.name %>
-                <br>
-                <b>Brand</b>
-                <%= card.brand %>
-                <br>
-                <b>Last digits</b>
-                <%= card.last_digits %>
-                <br>
-                <b>Country</b>
-                <%= card.country %>
-                <br>
-                <b>Expiration date</b>
-                <%= card.expiration_month %>/<%= card.expiration_year %>
-                <br>
-                <%= link_to 'Delete card', user_omise_card_path(@user.id, card_token: card.id), method: :delete %>
-            </li>
+            <%= render partial: 'omise_cards/single', locals: { card: card } %>
         <% end %>
     </ul>
 <% end %>
-
-<h3>List of orders:</h3>
-
-<h3>Add a new card:</h3>
-<%= form_tag user_omise_card_path(@user.id), method: :post do %>
-    Name
-    <%= text_field_tag :name %>
-    <br>
-    Card number
-    <%= text_field_tag :number %>
-    <br>
-    Expiration month
-    <%= text_field_tag :expiration_month %>
-    <br>
-    Expiration year
-    <%= text_field_tag :expiration_year %>
-    <br>
-    Security code
-    <%= text_field_tag :security_code %>
-    <br>
-    <%= submit_tag "Create" %>
-<% end %>
-<br>
+<br><br>
+<%= link_to 'Add Card', new_user_omise_card_path(@user.id) %>
+<br><br><br>
 <%= link_to 'Index', users_path %>
