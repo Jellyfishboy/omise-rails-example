@@ -6,13 +6,14 @@
 <% if @user.customer.cards.total == 0 %>
     <p>You currently have no cards for this account.</p>
 <% else %>
-    <ul>
+    <ul id="cards">
         <% @user.customer.cards.each do |card| %>
             <%= render partial: 'omise_cards/single', locals: { card: card } %>
         <% end %>
     </ul>
 <% end %>
 <br><br>
-<%= link_to 'Add Card', new_user_omise_card_path(@user.id) %>
+<h3>Add a new card</h3>
+    <%= render partial: 'omise_cards/form' %>
 <br><br><br>
 <%= link_to 'Index', users_path %>

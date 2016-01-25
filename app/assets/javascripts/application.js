@@ -14,3 +14,42 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function()
+{
+    Omise.setPublicKey('pkey_test_52r47ggdjaduxx1emu1');
+
+    $('body').on('submit', '#new_card', function()
+    {
+        var $form = $(this),
+            userId = $form.attr('data-user-id');
+
+        var $inputs = $('#new_card :input');
+
+        var card = {};
+        $inputs.each(function() {
+            card[this.name] = $(this).val();
+        });
+
+        Omise.createToken("card", card, function (statusCode, response) {
+            if (statusCode == 200) {
+                $.ajax(
+                {
+                    url: '/users/' + userId + '/omise_cards',
+                    type: 'POST',
+                    data: { token: response.id },
+                    dataType: 'json',
+                    success: function (data)
+                    {
+                        $('#cards').append(data.card);
+                        $form[0].reset();
+                    }
+                });
+            } else {
+                alert(response.message);
+            };
+        }); 
+        
+        return false;
+    });
+});

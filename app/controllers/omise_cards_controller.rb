@@ -8,13 +8,9 @@ class OmiseCardsController < ApplicationController
 
     def create
         set_user
-        @card = Card.new(card_params)
-        if @card.valid?
-            @user.customer.cards.create(card_params)
-            redirect_to user_path(@user.id)
-        else
-            render :new
-        end
+        @card = @user.customer.update(card: params[:token]) 
+        card_array = @card.attributes["cards"]["data"]
+        render json: { first: @user.customer.cards == 1 ? true : false, card: render_to_string(partial: 'omise_cards/single', locals: { card: OpenStruct.new(card_array[card_array.length-1]) }) }, status: 200
     end
 
     def destroy
