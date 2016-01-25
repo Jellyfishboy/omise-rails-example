@@ -27,6 +27,14 @@ class OmiseCardsController < ApplicationController
     def charge
         set_user
         set_card
+        charge_card
+        if @charge.authorized
+            # successful charge to the card
+            redirect_to user_path(@user.id)
+        else
+            # failed charge to the card
+            redirect_to root_path
+        end
     end
 
     private
@@ -41,6 +49,10 @@ class OmiseCardsController < ApplicationController
 
     def new_card
         @card = Card.new
+    end
+
+    def charge_card
+        @charge = Omise::Charge.create(amount: (params[:value].to_i*100).round, currency: 'thb', card: params[:id], customer: @user.omise_id)
     end
 
     def card_params
