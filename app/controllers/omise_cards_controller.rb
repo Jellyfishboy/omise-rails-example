@@ -19,7 +19,7 @@ class OmiseCardsController < ApplicationController
         set_user
         set_card
         charge_card
-        if @charge.authorized
+        if @charge.paid
             # successful charge to the card
             redirect_to user_path(@user.id)
         else
