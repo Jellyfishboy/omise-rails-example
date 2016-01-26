@@ -41,6 +41,7 @@ $(document).ready(function()
                     dataType: 'json',
                     success: function (data)
                     {
+                        $('#cards-container p').remove();
                         $('#cards').append(data.card);
                         $form[0].reset();
                     }

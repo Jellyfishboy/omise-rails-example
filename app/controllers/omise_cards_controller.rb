@@ -1,11 +1,6 @@
 class OmiseCardsController < ApplicationController
     before_filter :authenticate_user!
 
-    def new
-        set_user
-        new_card
-    end
-
     def create
         set_user
         @card = @user.customer.update(card: params[:token]) 
@@ -41,10 +36,6 @@ class OmiseCardsController < ApplicationController
 
     def set_card
         @card ||= @user.customer.cards.retrieve(params[:id])
-    end
-
-    def new_card
-        @card = Card.new
     end
 
     def charge_card

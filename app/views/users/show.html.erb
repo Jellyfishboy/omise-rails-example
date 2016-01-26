@@ -3,15 +3,16 @@
 <p>My Omise customer Id: <%= @user.omise_id %></p>
 
 <h3>List of Omise cards:</h3>
-<% if @user.customer.cards.total == 0 %>
-    <p>You currently have no cards for this account.</p>
-<% else %>
+<div id="cards-container">
+    <% if @user.customer.cards.total == 0 %>
+        <p>You currently have no cards for this account.</p>
+    <% end %>
     <ul id="cards">
         <% @user.customer.cards.each do |card| %>
             <%= render partial: 'omise_cards/single', locals: { card: card } %>
         <% end %>
     </ul>
-<% end %>
+</div>
 <br><br>
 <h3>Add a new card</h3>
     <%= render partial: 'omise_cards/form' %>
